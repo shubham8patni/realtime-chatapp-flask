@@ -1,20 +1,27 @@
 from flask import Flask, jsonify, render_template,request, Response
-# from connection1 import mydb
 import requests
 import json
 from flask_socketio import SocketIO, send, emit
 
-# mycursor = mydb.cursor()
-
 app = Flask(__name__)
-app.secret_key = "andhisnameisjohncena"
+app.secret_key = "andh346isname3467356isj356621ohnce9980na"
 socketio = SocketIO(app)
 
 @app.route("/")
 def home():
-    return "Hello There!!"
+    return render_template('ChatApp.html')
+
+# # Send message
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    emit('my response', json)
 
 
+# # Listen to event
+@socketio.on (' my event')
+def handle_my_custom_event( json ):
+    print( 'received something', +str(json))
+    socketio.emit('my response', json)
 
 if __name__ == "__main__":
     socketio.run(app,debug=True)
