@@ -12,15 +12,14 @@ def home():
     return render_template('ChatApp.html')
 
 # # Send message
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    emit('my response', json)
+def messageRecived():
+  print( 'message was received!!!' )
 
 
 # # Listen to event
-@socketio.on (' my event')
+@socketio.on ('my event')
 def handle_my_custom_event( json ):
-    print( 'received something', +str(json))
+    print( 'received something', str(json))
     socketio.emit('my response', json)
 
 if __name__ == "__main__":
